@@ -1,0 +1,16 @@
+HTTP
+request, response : header+body
+
+HTTP 통신방식
+GET/POST
+ GET: 파라미터 뒤가 URL뒤에 .jsp?param1=value&param2=value2
+ POST: 파라미터가 request바디 안에... 
+
+ -GET:  form태그에서 method가 get인 것 , a태그, 브라우저에 직접 url 작성
+ (http://localhost:8080/study/01basic/03result.jsp?a=564564) a라는 파라미터를 처리 하기만 함 
+ 
+ -POST:  form태그에서 method가 POST인 것  
+ 
+
+
+
