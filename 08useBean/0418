@@ -1,0 +1,15 @@
+1.에러 안나게 잘 만들자
+
+2.Http c/s stateless
+
+3.브라우저는 html만 해석할 수 있다.
+
+4. 정적/ 동적  ws / was 
+
+5. include (file로 변수를 가져오기)
+
+6. redirect, forward 요청이 한번인지 두번인지
+
+7. useBean : 자바빈규약과 왜 사용하는지 (파라미터 한번에 VO에 세팅)
+
+get/ post
