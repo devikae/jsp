@@ -1,0 +1,32 @@
+문제 : 
+제공받은 UserList에 있는 회원인지 확인하는 문제
+
+로그인창에서 id,pw 입력
+
+1.id or pw를 입력안했을 때 login.jsp로 redirect,
+ 파라미터로 msg="id 또는 pw 입력 해라" 추가
+
+2.id가 UserList에 없는 회원이거나 pw가 다르면
+login.jsp로 redirect, 파라미터로 msg="id또는 pw가 틀립니다" 추가
+(요즘엔 id,pw 중 뭐가 잘못됬는지 알려주지않습니다)
+
+3.id, pw모두 맞으면 Cookie("AUTH", id) 
+저장 후 login.jsp로 redirect
+
+4.로그인창 왔을 떄 AUTH쿠키가 있으면 로그인중, logout버튼만 보이기
+5.없으면  msg와 함께  로그인폼 나오게하기
+
+6.로그아웃은 쿠키 지우고 login.jsp로 redirect 
+---------------------------------------------
+ID 기억하기 누르고 loginCheck넘어가면   
+// 체크 박스 체크 시
+ 로그인성공시 
+Cookie("SAVE_ID",id,"/",일주일)  쿠키 생성
+다시 login.jsp로 가면  ID가  입력되어있어야함. 
+
+
+
+
+
+
+	
