@@ -15,17 +15,22 @@
 	<%@include file="/WEB-INF/inc/top.jsp"%>
 	
 	<%Cookie[] ck = request.getCookies();%>
+	//request로 쿠키를 받아서 배열에 넣음.
 
 	<%
 		for (Cookie cookies : ck) {
 			System.out.println(cookies.getName());
-		}
+		} 
+		// 제대로 쿠키를 받았는지 향상된 for문을 이용해 확인
 
 		CookieUtils co = new CookieUtils(request);
+		// 쿠키 메소드를 사용하기 위한 객체 선언
+		
 		System.out.println("쿠키 없음: " + (co.exists("AUTH")== false));
 		System.out.println("쿠키 보유: "+ (co.exists("AUTH")== true));
+		// request로 받았을때 쿠키가 제대로 있는지 확인하는 로그
 
-		if (co.exists("AUTH") == false) { // null이면 쿠키X >> 다시 로그인 창
+		if (co.exists("AUTH") == false) { // (AUTH라는 이름의 쿠키를 받은게 거짓이 맞다면) AUTH값의 쿠키를 받지 못했다면? 기존 로그인 페이지 출력
 	%>
 
 	<div class="container">
@@ -33,14 +38,14 @@
 			<h2>로그인</h2>
 			<table class="table table-bordered">
 				<tbody>
-				<%
+				<%	// 아이디 기억하기를 체크 했으며, 만약에 들어온 쿠키의 이름이 SAVE_ID 라면?
 					if(co.exists("SAVE_ID")){%>
 					<tr>
 						<th>아이디</th>
 						<td><input type="text" name="userId"
-							class="form-control input-sm" value="<%=co.getValue("SAVE_ID")%>"></td>
+							class="form-control input-sm" value="<%=co.getValue("SAVE_ID")%>"></td> //SAVE ID가 입력되어 있도록.
 					</tr>
-					<% }else{%>
+					<% }else{%> //그 외의 경우 기존 로그인 방식과 같음
 					<tr>
 						<th>아이디</th>
 						<td><input type="text" name="userId"
@@ -68,7 +73,7 @@
 	<!-- container -->
 	<% }
 	
-	if(co.exists("AUTH") == true){ // null이 아니면 id pw 매치 >> 로그아웃 창 
+	if(co.exists("AUTH") == true){ // AUTH가 제대로 들어왔다면 로그인 화면 
 	%>	
 		로그인 중
 	<a href="logout.jsp" class="btn btn-success btn-sm">로그아웃</a>
