@@ -19,22 +19,33 @@
 <body>
 <%	
 	UserList userList= new UserList();
+	// 계정들의 키와, 값이 모두 담김
+	
 	String msg = "id 또는 pw 입력해라";
+	// id or pw 입력 안할 시 출력 할 문자열
+	
 	String whrong = "id 또는 pw가 틀립니다. ";
+	// id or pw가 틀렸을 시 출력 할 문자열
+	
 	String id = request.getParameter("userId");
+	// 사용자가 입력한 id를 담은 변수
+	
 	String pw = request.getParameter("userPass");
+	// 사용자가 입력한 pw를 담은 변수
 	
 	String yn = request.getParameter("rememberMe");
+	// login에서 사용자가 id기억하기를 누른다면 "Y"가 담긴다.
 	
 	
-	if(id.equals("") || pw.equals("")){
+	if(id.equals("") || pw.equals("")){ // id,pw 모두 입력하지 않았다면
 		response.sendRedirect("login.jsp?mag=" + URLEncoder.encode(msg, "utf-8"));
-	}else if(userList.getUser(id) != null){ // 입력한 아이디랑 대치해서 회원이 있다면
+		// 파라미터에 표시, 인코딩 하지 않으면 ??로 나옴.
 		
-		userList.getUser(id).getUserPass(); // userVO
+	}else if(userList.getUser(id) != null){ // 사용자가 입력한 id의 값이 있다면?
 		
+		userList.getUser(id).getUserPass(); // id로 유저의 패스워드를 가져옴.
 		
-		if(userList.getUser(id).getUserPass().equals(pw)){ // id pw 맞을때
+		if(userList.getUser(id).getUserPass().equals(pw)){ // id와 pw 일치 할 시 
 			
 			if(yn.equals("Y")){
 				Cookie ck = CookieUtils.createCookie("SAVE_ID",id,"/",((60*60*24)*7));
@@ -43,8 +54,11 @@
 				
 			}else{
 			// 쿠키 저장 후 로그인 jsp redirect로
+			
 			Cookie ck = CookieUtils.createCookie("AUTH",id);
+			// AUTH라는 이름의 쿠키 생성
 			response.addCookie(ck);
+		
 			response.sendRedirect("login.jsp");
 			}
 			
