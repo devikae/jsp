@@ -35,6 +35,7 @@
 
 	<div class="container">
 		<form action="loginCheck.jsp" class="loginForm">
+			<!--login클릭 시 loginCheck로 이동-->
 			<h2>로그인</h2>
 			<table class="table table-bordered">
 				<tbody>
