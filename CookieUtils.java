@@ -15,6 +15,8 @@ public class CookieUtils {
 	//특정 쿠키가 검색, 쿠키생성+set 한번에 하기 
 	
 	private Map<String, Cookie> cookieMap = new HashMap<String, Cookie>();
+	//문자열과 쿠키객체를 받아 만든 쿠키 맵
+	
 	
 	// 생성자, CookieUtils 만들 때 매개변수로 request를 받아서 cookieMap에 저장
 	public CookieUtils(HttpServletRequest request) { // 특정 키 유무 리퀘스트로 판별
@@ -22,13 +24,15 @@ public class CookieUtils {
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
 				this.cookieMap.put(cookie.getName(), cookie);
+				//맵에 만든 쿠키의 이름과, 객체를 넣어줌.
 			}
 		}
 		
 	}
 	
 	// 해당 쿠키가 있는지 없는지, 
-	public boolean exists(String name) { 
+	// boolean타입 리턴 
+	public boolean exists(String name) {
 		return cookieMap.get(name)!=null; 
 	}
 	
