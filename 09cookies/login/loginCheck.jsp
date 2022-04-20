@@ -18,6 +18,12 @@
 </head>
 <body>
 <%	
+	String yn= "";
+	if(a != null){
+		yn = request.getParameter("rememberMe");
+	}
+
+
 	UserList userList= new UserList();
 	// 계정들의 키와, 값이 모두 담김
 	
