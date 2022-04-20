@@ -57,6 +57,9 @@
 					<ul>
 						<li class="prod-image"><a href="prodView.jsp?prodId=<%=list.get(count).getProdId()%>"><img alt="" src="/study/resources/images/prod/<%=list.get(count).getProdId()%>.jpg"></a>
 						<li class="prod-title"><a href="prodView.jsp?prodId=<%=list.get(count).getProdId()%>">><%=list.get(count).getProdName() %></a>
+						// 이미지나, 타이틀을 누르면 View page로 이동, 파라미터 값을 넘겨줌 파라미터 값은 위에서 선언한 리스트 객체의 값
+							
+						
 						<li class="prod-price"><%= list.get(count).getProdPrice() %>
 						<li class="prod-reg-date"><%= list.get(count).getProdRegDate() %>
 						
