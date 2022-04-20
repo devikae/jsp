@@ -29,6 +29,7 @@
 		<tr>
 			<td>제품명</td>			
 			<td><%=ProductList.getProduct(request.getParameter("prodId")).getProdName() %></td>
+			// 파라미터로 들어온 값과 맞는 객체의 필드변수 Name에 접근, 제품명 출력
 		</tr>	
 		<tr>
 			<td>이미지</td>			
