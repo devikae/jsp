@@ -40,17 +40,18 @@
 	
 	<%
 		List<ProdVO> list = ProductList.getProductList();
+		// ProdVO객체를 담는 리스트에 PruductList에 있는 값들을 담음
 		
 		int count = 0;
 		%>
 
 				<%
-					for (int i = 0; i < 3; i++) {
+					for (int i = 0; i < 3; i++) { // 3x3짜리 테이블을 만듬
 						out.print("<tr>");
 				%>
 
 				<%
-					for (int j = 0; j < 3; j++) {
+					for (int j = 0; j < 3; j++) { //각 칸마다 내용 입력
 				%>
 				<td>
 					<ul>
