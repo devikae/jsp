@@ -1,0 +1,15 @@
+EL 전 
+하드코딩 되어있는 prodList.jsp를
+ProductList.java, ProdVO를 이용해서 for문으로  작성하세요.
+
+순서는 상관하지마세요
+순서는 상관하지마세요
+순서는 상관하지마세요
+
+
+
+prodList.jsp에서 해당 제품을 누르면 
+prodView.jsp로 이동하면서 파라미터를 prodId값을 넘깁니다.
+prodView.jsp에서 파라미터에 따라 해당 제품의 상세정보가 보이도록 하세요
+
+
