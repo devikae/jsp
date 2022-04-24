@@ -18,6 +18,7 @@
 취미: 
 <%
 	String[] hobbies =request.getParameterValues("hobby");
+	// hobby라는 파라미터들의 값을 가져와 배열안에 담음
 	for(String hobby : hobbies){
 		out.print(hobby + " ");
 	}
