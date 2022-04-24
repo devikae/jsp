@@ -32,7 +32,8 @@
 <br>
 
 <%
-	session.invalidate(); // 세션삭제 새로고침 할 때 마다 세션ID 바뀜.
+	session.invalidate(); // 세션삭제
+	//새로고침 할 때 마다 세션이 삭제되고 새 세션이 생겨 세션ID  바뀜.
 	
 %>
 
