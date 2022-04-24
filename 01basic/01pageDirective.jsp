@@ -13,12 +13,14 @@ hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 <hr>
 어쩔티비 어쩔냉장고
 <hr>
-중요한건 브라우저 html만 해석 
-trimD "false" 소스 창 한줄 공백 default임 
-true > 소스 창 공백X
+    
+"중요한건 브라우저 html만 해석"
+trimDirectiveWhitespaces >> "false" 콘솔>소스 부분 한줄 공백 후 출력된다. (default false) 
+true > 콘솔에서 소스 창 공백X
+    
 <hr>
 서버로 부터 응답 받을 때 데이터는 같지만 
-데이터를 해석하는 방식에 따라 보여즈는게 다름 
+데이터를 해석하는 방식에 따라 보여주는게 다름 
 
 contentType = "text/html"
 contentType = "text/plain"
