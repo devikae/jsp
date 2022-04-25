@@ -118,7 +118,8 @@
 		<c:forEach items="${memberList }" var="member">
 		<tr>
 			<td>${member.memId }</td>
-			<td>${member.memName }</td>
+			<td> <a href="01memberView.jsp?memId=${member.memId }"> ${member.memName } </a> </td>
+			<% // **중요 a태그로 파라미터를 보내고 View에서 파라미터에 관한 데이터를 불러옴 %>
 			<td>${member.memBir }</td>
 			<td>${member.memHobby }</td>
 			<td>${member.memMail }</td>
