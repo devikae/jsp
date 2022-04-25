@@ -48,16 +48,16 @@
 
 			StringBuffer sb = new StringBuffer();
 			sb.append(" 		SELECT 															");
-			sb.append(" 		 		mem_id	, 	mem_pass	, mem_name                 	");
-			sb.append(" 			 , mem_bir,	mem_zip	, mem_add1        		    	");
+			sb.append(" 		 	   mem_id, 	mem_pass	, mem_name                 	");
+			sb.append(" 			 , mem_bir,	mem_zip		, mem_add1        	    	");
 			sb.append(" 			 , mem_add2, mem_hp		, mem_mail	               	");
-			sb.append(" 			 , mem_job,	mem_hobby	, mem_mileage		         	");
-			sb.append(" 			 , mem_del_yn                                      	");
-			sb.append(" 		FROM member      		                              	");
+			sb.append(" 			 , mem_job,	mem_hobby	, mem_mileage		       	");
+			sb.append(" 			 , mem_del_yn                                    	  	");
+			sb.append(" 		FROM member      		                         	     	");
 			sb.append(" 		WHERE 1=1		      		                              	");
-			sb.append(" 		AND mem_id = " + "'" + memId + "'"							 );
-// 			sb.append(" 		AND mem_id = " + memId											 );
-			//이렇게 쓰면 안된다. 쿼리에서 작은 따옴표가 없어 문자열인지 알 수 없어서
+			sb.append(" 		AND mem_id = " + "'" + memId + "'"					 );
+// 			sb.append(" 		AND mem_id = " + memId							 );
+			// 이렇게 쓰면 안된다. 쿼리에서 작은 따옴표가 없어 문자열인지 알 수 없어서 불러올 수 없음 
 
 			rs = stmt.executeQuery(sb.toString());
 
@@ -87,15 +87,10 @@
 		} finally {
 
 			// 4. 종료
-			// 		if(rs!=null) rs.close(); 이렇게 close 하는것은 권장되지 않는다.
 			if (rs != null)   {try {rs.close();} catch (Exception e) {}}
 			if (stmt != null) {try {stmt.close();} catch (Exception e) {}}
 			if (conn != null) {try {conn.close();} catch (Exception e) {}}}
 	%>
-
-	<%-- <c:forEach items="${memIdList }" var= "memId"> --%>
-	<%-- ${memId }<br> --%>
-	<%-- </c:forEach> --%>
 
 	<table class="table table-striped table-bordered">
 		<tbody>
