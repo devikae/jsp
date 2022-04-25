@@ -35,8 +35,8 @@
 	}
 
 	Connection conn = null;	// 연결하는 객체
-	Statement stmt = null;		// 쿼리수행 객체
-	ResultSet rs= null;			// select의 경우 결과 저장 객체 
+	Statement stmt = null;	// 쿼리수행 객체
+	ResultSet rs= null;	// select의 경우 결과 저장 객체 
 
 	try{
 		// 2.연결
@@ -44,7 +44,7 @@
 		// a= jdbc:oralce:thin:host:PORT:SID | b= 계정 | c= 비밀번호
 		
 		// 3. 쿼리 수행
-		stmt= conn.createStatement(); // 연결한 객체에게 쿼리를 수행해라.
+		stmt= conn.createStatement();				 // 연결한 객체에게 쿼리를 수행해라.
 // 		rs=stmt.executeQuery("SELECT  FROM member");		// 쿼리문 내 ";" 쓰지 말 것.
 		// select mem_id
 		// from member;  의 데이터(a001~a0040까지)가 rs에 담겨있음
@@ -52,6 +52,7 @@
 		
 		
 		StringBuffer sb = new StringBuffer();
+		// 버퍼 선언
 		sb.append(" 		SELECT 															");
 		sb.append(" 		 	  mem_id, 	mem_pass	, mem_name                 	");
 		sb.append(" 			 , mem_bir,	mem_zip	, mem_add1        		    	");
@@ -61,12 +62,14 @@
 		sb.append(" 		FROM member      		                           	   	");
 		// Alt + Shift + A 해서 영역 지정 후 copy& paste 
 		
-		rs= stmt.executeQuery(sb.toString());
+		rs= stmt.executeQuery(sb.toString()); 
+		// 버퍼에 쿼리문의 결과를 rs에 담음
 		
 		
 		
 // 		List<String> memIdList = new ArrayList<String>(); 
 		List<MemberVO> memberList = new ArrayList<MemberVO>(); 
+		// MemberVO를 담는 ArrayList 선언 
 		
 		while(rs.next()){
 // 			String memId= rs.getString("mem_id");
