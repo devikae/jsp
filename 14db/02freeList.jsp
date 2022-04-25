@@ -65,13 +65,16 @@ try{
 		free.setBoModDate( rs.getString("bo_mod_date") );
 		free.setBoDelYn( rs.getString("bo_del_yn") );
 		
+		// 객체의 필드 변수들을 위에서 가져온 쿼리문으로 값을 넣어주고 
 		
 		freeList.add(free);
-
+		// 리스트에 담아줌
 		
 	}
 	
 	request.setAttribute("freeList", freeList);	
+	// 위에서 필드변수가 채워진 객체들을 freeList에 담고 setAttribute를 해줘서 jstl도 사용 가능하도록
+	
 }catch(SQLException e){
 	e.printStackTrace();
 }finally{
