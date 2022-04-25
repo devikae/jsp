@@ -36,20 +36,23 @@ try{
 	stmt= conn.createStatement(); 
 	
 	StringBuffer sb = new StringBuffer();
-	sb.append(" 	 SELECT                                      					");
-	sb.append(" 	bo_no                                                      	");
-	sb.append(" 	, bo_title , bo_category , bo_writer         	  			  	");
+	sb.append(" 	 SELECT                                    			");
+	sb.append(" 	  bo_no                                                      	");
+	sb.append(" 	, bo_title , bo_category , bo_writer        		  	");
 	sb.append(" 	, bo_pass , bo_content , bo_ip                         		");
-	sb.append(" 	, bo_hit , bo_reg_date , bo_mod_date         	         		");
+	sb.append(" 	, bo_hit , bo_reg_date , bo_mod_date                 		");
 	sb.append(" 	, bo_del_yn                                            		");
-	sb.append(" 	 FROM free_board                                     			");
+	sb.append(" 	 FROM free_board                               			");
 	
 	rs= stmt.executeQuery(sb.toString());
 	
 	List<FreeBoardVO> freeList = new ArrayList<FreeBoardVO>(); 
+	// FreeBoardVO 객체를 담아줄 ArrayList 선언
 	
 	while(rs.next()){
 		FreeBoardVO free = new FreeBoardVO();
+		// FreeBoardVO 객체 선언
+		
 		free.setBoNo( rs.getInt("bo_no") );
 		free.setBoTitle( rs.getString("bo_title") );
 		free.setBoCategory( rs.getString("bo_category") );
@@ -61,6 +64,7 @@ try{
 		free.setBoRegDate( rs.getString("bo_reg_date") );
 		free.setBoModDate( rs.getString("bo_mod_date") );
 		free.setBoDelYn( rs.getString("bo_del_yn") );
+		
 		
 		freeList.add(free);
 
