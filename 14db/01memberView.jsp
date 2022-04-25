@@ -32,38 +32,34 @@
 			System.out.print("OracleDriber를 찾을 수 없음");
 		}
 
-		Connection conn = null; // 연결하는 객체
+		Connection conn = null; 	// 연결하는 객체
 		PreparedStatement pstmt = null; // 쿼리 수행 객체
-		ResultSet rs = null; // select의 경우 결과 저장 객체 
+		ResultSet rs = null; 		// 결과 저장 객체 
 
 		try {
 			// 2.연결
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "jsp", "jsp"); // ("a", "b", "c")
-			// a= jdbc:oralce:thin:host:PORT:SID | b= 계정 | c= 비밀번호
 
 			// 3. 쿼리 수행
 // 			stmt = conn.createStatement(); // 연결한 객체에게 쿼리를 수행. pstmt 사용 위해 주석
  			
-			// 		rs=stmt.executeQuery("SELECT  FROM member");		// 쿼리문 내 ";" 쓰지 말 것.
-			// select mem_id
-			// from member;  의 데이터(a001~a0040까지)가 rs에 담겨있음
-
-			StringBuffer sb = new StringBuffer();
+ 			StringBuffer sb = new StringBuffer();
 			sb.append(" 		SELECT 															");
-			sb.append(" 		 		mem_id	, 	mem_pass	, mem_name                 	");
-			sb.append(" 			 , mem_bir,	mem_zip	, mem_add1        		    	");
+			sb.append(" 		 	   mem_id, 	mem_pass	, mem_name                 	");
+			sb.append(" 			 , mem_bir,	mem_zip		, mem_add1    		    	");
 			sb.append(" 			 , mem_add2, mem_hp		, mem_mail	               	");
-			sb.append(" 			 , mem_job,	mem_hobby	, mem_mileage		         	");
-			sb.append(" 			 , mem_del_yn                                      	");
-			sb.append(" 		FROM member      		                              	");
+			sb.append(" 			 , mem_job,	mem_hobby	, mem_mileage	         	");
+			sb.append(" 			 , mem_del_yn                                 		     	");
+			sb.append(" 		FROM member      		                      	        	");
 			sb.append(" 		WHERE 1=1		      		                              	");
-		   sb.append(" 		AND mem_id =  ?													");
+		  	sb.append(" 		AND mem_id =  ?													");
 				
 // 			rs = stmt.executeQuery(sb.toString()); pstmt 사용 위해 주석처리
 			int index =1;
 			pstmt = conn.prepareStatement(sb.toString());
 			
 			pstmt.setString(index, memId); 
+			// 물음표 자리(쿼리문 조건절)에 requst로 받은 memId
 			
 			rs= pstmt.executeQuery();
 
