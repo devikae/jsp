@@ -20,6 +20,7 @@
 
 <%
 		String boNo = request.getParameter("boNo");
+		// FreeList에서 받은 파라미터 값을 변수 bono에 담음
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -37,21 +38,25 @@
 			stmt = conn.createStatement(); 
 
 			StringBuffer sb = new StringBuffer();
-			sb.append(" 	 SELECT                                    		");
+			sb.append(" 	SELECT                                		");
 			sb.append(" 	bo_no                                          	");
 			sb.append(" 	, bo_title , bo_category , bo_writer         	");
 			sb.append(" 	, bo_pass , bo_content , bo_ip                  ");
-			sb.append(" 	, bo_hit , bo_reg_date , bo_mod_date        		");
-			sb.append(" 	, bo_del_yn                                   	");
-			sb.append(" 	 FROM free_board                                ");
-			sb.append(" 		WHERE 1=1		      		                      	");
-			sb.append(" 		AND bo_no = " +  boNo  							 );
+			sb.append(" 	, bo_hit , bo_reg_date , bo_mod_date   		");
+			sb.append(" 	, bo_del_yn                              	");
+			sb.append(" 	FROM free_board                                ");
+			sb.append(" 	WHERE 1=1		                 	");
+			sb.append(" 	AND bo_no = " +  boNo  				 );
+			
+			// 위에서 받은 파라미터값을 조건절에 넣어줘서 조건에 해당하는 객체만 값을 불러옴
 
 			rs = stmt.executeQuery(sb.toString());
 
 
 			if (rs.next()) {
 				FreeBoardVO free = new FreeBoardVO();
+				// freeList와 다르게 객체 하나의 정보만 보여주면 되서 리스트 선언 하지않음
+				
 				free.setBoNo( rs.getInt("bo_no") );
 				free.setBoTitle( rs.getString("bo_title") );
 				free.setBoCategory( rs.getString("bo_category") );
@@ -65,6 +70,7 @@
 				free.setBoDelYn( rs.getString("bo_del_yn") );
 				
 				request.setAttribute("free", free);
+				// 위에서 선언한 객체를 setAttribut
 
 			}
 
@@ -84,7 +90,7 @@
 			<tr>
 				<th>글번호</th>
 				<td>${free.boNo }</td>
-				<td>${boNum }</td>
+<!-- 				<td>${boNum }</td>  위에서 변수 이름을 처음에 boNum이라 했었고 제대로 나오는지 결과 확인용-->
 			</tr>
 			<tr>
 				<th>제목</th>
