@@ -34,17 +34,16 @@
 		
 		StringBuffer sb = new StringBuffer();
 		
-		sb.append(" 	 SELECT                                      					");
+		sb.append(" 	SELECT                        					");
 		sb.append(" 	bo_no                                                      	");
-		sb.append(" 	, bo_title , bo_category , bo_writer         	  			  	");
+		sb.append(" 	, bo_title , bo_category , bo_writer         	  		");
 		sb.append(" 	, bo_pass , bo_content , bo_ip                         		");
-		sb.append(" 	, bo_hit , bo_reg_date , bo_mod_date         	         		");
+		sb.append(" 	, bo_hit , bo_reg_date , bo_mod_date         	         	");
 		sb.append(" 	, bo_del_yn                                            		");
-		sb.append(" 	 FROM free_board                                     			");
+		sb.append(" 	FROM free_board                                     		");
 		
 		pstmt = conn.prepareStatement(sb.toString());
 		rs = pstmt.executeQuery();
-		
 		
 		List<FreeBoardVO> freeList = new ArrayList<FreeBoardVO>(); 
 		
@@ -78,11 +77,6 @@
 		
 	}
 %>
-
-
-
-
-
 
 <div class="container">
 	<div class="page-header">
@@ -119,7 +113,6 @@
 	
 	<c:forEach items="${freeList }" var="free">
 			<tr class="text-center">
-			
 				<td>${free.boNo }</td>
 				<td>${free.boCategory }</td>
 				<td class="text-left">
