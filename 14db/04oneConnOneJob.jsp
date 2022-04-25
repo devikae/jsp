@@ -19,7 +19,7 @@
 <%@include file="/WEB-INF/inc/top.jsp" %>
 
 One Conn One Job 
-<br> 걸린시간: 16~40
+<br> 걸린시간: 16~40초
 <br> 1개 연결 1개 작업
 <%
 	Class.forName("oracle.jdbc.driver.OracleDriver");
