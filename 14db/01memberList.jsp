@@ -53,12 +53,12 @@
 		
 		StringBuffer sb = new StringBuffer();
 		sb.append(" 		SELECT 															");
-		sb.append(" 		 		mem_id	, 	mem_pass	, mem_name                 	");
+		sb.append(" 		 	  mem_id, 	mem_pass	, mem_name                 	");
 		sb.append(" 			 , mem_bir,	mem_zip	, mem_add1        		    	");
 		sb.append(" 			 , mem_add2, mem_hp		, mem_mail	               	");
-		sb.append(" 			 , mem_job,	mem_hobby	, mem_mileage		         	");
-		sb.append(" 			 , mem_del_yn                                      	");
-		sb.append(" 		FROM member      		                              	");
+		sb.append(" 			 , mem_job,	mem_hobby	, mem_mileage		       	");
+		sb.append(" 			 , mem_del_yn                                      		");
+		sb.append(" 		FROM member      		                           	   	");
 		// Alt + Shift + A 해서 영역 지정 후 copy& paste 
 		
 		rs= stmt.executeQuery(sb.toString());
