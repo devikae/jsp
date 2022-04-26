@@ -26,23 +26,27 @@
 	
 	try{
 		conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:study");
+		//연결
 		
 		StringBuffer sb = new StringBuffer();
 		
-		sb.append(" SELECT											");
+		sb.append(" SELECT					");
 		sb.append("    mem_id      , mem_pass  , mem_name	");
 		sb.append("    , mem_bir   , mem_zip   , mem_add1	");
 		sb.append("    , mem_add2  , mem_hp    , mem_mail	");
-		sb.append("    , mem_job   , mem_hobby					");
-		sb.append("    , mem_mileage, mem_del_yn				");
-		sb.append(" FROM member									");
+		sb.append("    , mem_job   , mem_hobby			");
+		sb.append("    , mem_mileage, mem_del_yn		");
+		sb.append(" FROM member					");
 		                  
 		
 		pstmt = conn.prepareStatement(sb.toString());
+		
 		rs = pstmt.executeQuery();
+		// 쿼리문의 결과 담아줌 
 		
 		
-		List<MemberVO> memberList = new ArrayList<MemberVO>(); 
+		List<MemberVO> memberList = new ArrayList<MemberVO>();
+		
 		
 		while(rs.next()){
 			MemberVO member = new MemberVO();
