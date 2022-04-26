@@ -40,6 +40,7 @@
 		sb.append("    , mem_mileage, mem_del_yn		");
 		sb.append(" FROM member					");
 		sb.append(" WHERE mem_id = ?				");
+		// List에서 받은 파라미터의 값과 일치하는 회원을 조회하기 위해 WHERE절 
 		
 		pstmt = conn.prepareStatement(sb.toString()); 
 		
@@ -52,6 +53,7 @@
 			
 		if(rs.next()){
 			MemberVO member = new MemberVO();
+			// 여러 객체를 보여줄게 아니고 하나의 멤버만 보여줘도 되기때문에 리스트선언X
 			member.setMemId( rs.getString("mem_id") );
 			member.setMemPass( rs.getString("mem_pass") );
 			member.setMemName( rs.getString("mem_name") );
@@ -66,12 +68,16 @@
 			member.setMemMileage( rs.getInt("mem_mileage") );
 			member.setMemDelYn( rs.getString("mem_del_yn") );
 			
+			
 			String cut = member.getMemBir();
 			String birth = cut.substring(0, 10);
+			// yyyy-MM-dd로 정보를 보여주기 위해 뒷부분 잘라줌.
 			member.setMemBir(birth);
+			// 자른값을 다시 담음 
 			
 			
 			request.setAttribute("member", member);	
+			// 담은 후 setAttribute
 		}
 		
 		
