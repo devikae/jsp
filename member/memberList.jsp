@@ -46,10 +46,11 @@
 		
 		
 		List<MemberVO> memberList = new ArrayList<MemberVO>();
-		
+		// 쿼리문의 결과를 담아줄 리스트 선언 
 		
 		while(rs.next()){
 			MemberVO member = new MemberVO();
+			// memberVO객체 
 			member.setMemId( rs.getString("mem_id") );
 			member.setMemPass( rs.getString("mem_pass") );
 			member.setMemName( rs.getString("mem_name") );
@@ -63,12 +64,16 @@
 			member.setMemHobby( rs.getString("mem_hobby") );
 			member.setMemMileage( rs.getInt("mem_mileage") );
 			member.setMemDelYn( rs.getString("mem_del_yn") );
+			// 멤버 객체에 쿼리문의 결과 값들을 담아줌
 			
 			memberList.add(member);
+			// 값이 담긴 MemberVO객체를 리스트에 담음.
+			
 			
 		}
 		
 		request.setAttribute("memberList", memberList);	
+		// jstl 사용을 위해 setAttribute
 		
 	}catch(SQLException e){
 		e.printStackTrace();
@@ -114,6 +119,7 @@
 			<tr>
 				<td>ID</td>
 				<td><a href="memberView.jsp?memId=${member.memId}">
+					// 멤버의 이름을 클릭하면 view 페이지로 이동하며, memId라는 파라미터의 값으로 memId를 넘겨줌
 				${member.memName }</a></td>
 				<td>${member.memHp }</td>
 				<td>${member.memBir }</td>
