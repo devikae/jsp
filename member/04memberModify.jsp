@@ -42,7 +42,7 @@
 		sb.append("    , mem_hp    = ? 	");
 		sb.append("    , mem_job   = ? 	");
 		sb.append("    , mem_hobby = ? 	");
-		sb.append(" WHERE mem_id = ?		");
+		sb.append(" WHERE mem_id = ?	");
 		
 		pstmt = conn.prepareStatement(sb.toString());
 		
