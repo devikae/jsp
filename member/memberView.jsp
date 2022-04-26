@@ -27,19 +27,23 @@
 	
 	try{
 		conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:study");
+		// 연걸
 		
 		StringBuffer sb = new StringBuffer();
+		// 버퍼 선언
 		
-		sb.append(" SELECT											");
+		sb.append(" SELECT					");
 		sb.append("    mem_id      , mem_pass  , mem_name	");
 		sb.append("    , mem_bir   , mem_zip   , mem_add1	");
 		sb.append("    , mem_add2  , mem_hp    , mem_mail	");
-		sb.append("    , mem_job   , mem_hobby					");
-		sb.append("    , mem_mileage, mem_del_yn				");
-		sb.append(" FROM member									");
-		sb.append(" WHERE mem_id = ?								");
+		sb.append("    , mem_job   , mem_hobby			");
+		sb.append("    , mem_mileage, mem_del_yn		");
+		sb.append(" FROM member					");
+		sb.append(" WHERE mem_id = ?				");
 		
-		pstmt = conn.prepareStatement(sb.toString());
+		pstmt = conn.prepareStatement(sb.toString()); 
+		
+		
 		int cnt = 1;
 		pstmt.setString(1, memId);
 		
