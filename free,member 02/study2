@@ -1,0 +1,39 @@
+계층화 아키텍쳐 레이어드 : 변경과 확장에 유연하다. (메소드로 만들어서 쓰기 때문에) > 유지보수에 좋음. 
+
+Exception 처리
+
+	1. 아무것도 안함?
+		try{
+			// 에러발생코드
+		}catch(Exception e){
+				
+		}
+
+	2. 에러출력
+		try{
+			// 에러발생코드
+		}catch(Exception e){
+			e.printStackTrace(e); // 에러를 콘솔에 출력		
+		}
+	
+	모든 예외는 적절히 처리 해줘야한다.
+	
+	3. 
+		try{
+			// 에러발생코드
+		}catch(Exception e){
+			무언가 해야한다 null을 리턴한다거나 
+			문제가 있어서 다른코드를 실행한다던지
+		}
+		
+	3_1 SQLException은 어떻게 처리 해야할까?
+		쿼리문을 잘못써서 catch문으로 들어가도 문제없이 프로그램은 실행됨 > 이걸 원하는게 아님 
+		쿼리문을 잘못쓰면 프로그램이 멈추는걸 원함 > 그래야 보고 수정 가능하니까 오류가 나오면 좋겠다.
+		
+		try{
+			// SQLException 발생 
+		}catch(Exception e){
+			// 위에서 SQLE 발생하면 프로그램이 정지되도록 catch에서 다른 에러(DaoException)를 만들어줘야한다.
+			// 이 기능을 해주는게 DaoException
+		}	
+	
