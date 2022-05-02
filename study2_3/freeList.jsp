@@ -183,7 +183,7 @@
 						data-page="${searchVO.firstPage -1 }"><span aria-hidden="true">&lt;</span></a></li>
 				</c:if>
 
-				<!-- 페이지 넘버링  -->
+				
 				<!-- 페이지 넘버링  -->
 				<c:forEach begin="${searchVO.firstPage }"
 					end="${searchVO.lastPage }" var="i">
@@ -191,7 +191,7 @@
 						<li class="active"><a href="#">${searchVO.curPage }</a></li>
 					</c:if>
 					<c:if test="${searchVO.curPage != i }">
-						<li><a href="freeList.jsp?curPage=${i }" data-page="${i }">${i }</a></li>
+						<li><a href="freeList.jsp?curPage=${i }" data-page="${i }"> ${i } </a></li>
 					</c:if>
 				</c:forEach>
 
