@@ -22,7 +22,7 @@ public class FreeBoardDaoOracle implements IFreeBoardDao {
 	
 	
 	@Override
-	public int getTotalRowCount(FreeBoardSearchVO searchVO) {
+	public int getTotalRowCount(FreeBoardSearchVO searchVO) { // 전체 글의 수 
 		Connection conn =null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -34,14 +34,17 @@ public class FreeBoardDaoOracle implements IFreeBoardDao {
 			
 			sb.append("  SELECT count(*)			");
 			sb.append("  FROM free_board			");
-			sb.append("  WHERE bo_del_yn = 'N'	");
+			sb.append("  WHERE bo_del_yn = 'N'		");
+			// 집계함수를 이용해 전체 게시글의 수를 구하는 쿼리
 			
 //			if(searchVO.getSearchWord() != null && searchVO.getSearchWord().isEmpty()) {
 //				sb.append("");
+			// getSearchWord() = 사용자가 입력한 검색어의 값이 있는데, 그 값이 공백이라면
 //			}
 			
 			if(StringUtils.isNotEmpty(searchVO.getSearchWord())) {
 				switch (searchVO.getSearchType()) {
+						// 분류에 따라 검색하기 위해 searchVO의 SearchType 값에 따른 쿼리문 추가
 				case "T":sb.append(" AND bo_title LIKE '%' || ? || '%' ");					break; // title
 				case "W":sb.append(" AND bo_writer LIKE '%' || ? || '%' ");					break; // writer
 				case "C":sb.append(" AND bo_content LIKE '%' || ? || '%' ");					break; // content
@@ -64,10 +67,12 @@ public class FreeBoardDaoOracle implements IFreeBoardDao {
 			pstmt = conn.prepareStatement(sb.toString());
 			int cnt =1;
 			
-			if(StringUtils.isNotEmpty(searchVO.getSearchWord())) {
+			if(StringUtils.isNotEmpty(searchVO.getSearchWord())) { // 위 쿼리문의 ? 에 대한 값 
+				//SearchWord의 값이 null이 아닐 때 사용자가 입력한 값으로 쿼리문에 WHERE절 검색
 				pstmt.setString(cnt++, searchVO.getSearchWord());
 			}
-			if(StringUtils.isNotEmpty(searchVO.getSearchCategory())) {
+			if(StringUtils.isNotEmpty(searchVO.getSearchCategory())) { // 사용자가 카테고리 분류를 이용 했을 경우 그 값이 null이 아닐 때 
+				// where 절에 bo_category = ? 추가 
 				pstmt.setString(cnt++, searchVO.getSearchCategory());
 			}
 			
