@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+
+<!-- dbcp	 -->
+<servlet>
+	<servlet-name>DriverLoader</servlet-name>
+	<servlet-class>com.study.servlet.DriverLoader</servlet-class>
+	<load-on-startup>1</load-on-startup>
+</servlet>	
+	
+<!-- <servlet> -->
+<!-- 	<servlet-name>freeList</servlet-name> -->
+<!-- 	<servlet-class>com.study.servlet.AOSimpleFreeList</servlet-class> -->
+<!-- </servlet>	 -->
+<!-- <servlet-mapping> -->
+<!-- 	<servlet-name>freeList</servlet-name> -->
+<!-- 	<url-pattern>/free/freeList.wow</url-pattern> -->
+<!-- </servlet-mapping> -->
+
+<servlet>
+	<servlet-name>dispatcherServlet</servlet-name>
+	<servlet-class>com.study.servlet.DispatcherServlet</servlet-class>
+	<load-on-startup>2</load-on-startup>
+</servlet>	
+<servlet-mapping>
+	<servlet-name>dispatcherServlet</servlet-name>
+	<url-pattern>/</url-pattern>
+</servlet-mapping>
+	
+<!-- <servlet> -->
+<!-- 	<servlet-name>sum</servlet-name> -->
+<!-- 	<servlet-class>com.study.servlet.Sum</servlet-class> -->
+<!-- </servlet>	 -->
+
+<!-- <servlet-mapping> -->
+<!-- 	<servlet-name>sum</servlet-name> -->
+<!-- 	<url-pattern>*.wow</url-pattern> -->
+<!-- </servlet-mapping> -->
+
+
+
+<!-- 	<error-page> -->
+<!-- 		<exception-type>java.lang.NullPointerException</exception-type> -->
+<!-- 		<location>/WEB-INF/error/errorType.jsp</location> -->
+<!-- 	</error-page> -->
+	
+<!-- 	<error-page> -->
+<!-- 		<exception-type>java.lang.arrayIndexOutOfBoundException</exception-type> -->
+<!-- 		<location>/WEB-INF/error/errorType2.jsp</location> -->
+<!-- 	</error-page> -->
+	
+<!-- 	<error-page> -->
+<!-- 		<exception-type>java.sql.SQLException</exception-type> -->
+<!-- 		<location>/WEB-INF/error/errorType3.jsp</location> -->
+<!-- 	</error-page> -->
+	
+	
+	
+	
+	
+	
+
+  <!-- url 패턴 3가지 
+  		확장자 매핑: *.wow, do , so
+  		경로 매핑: /member/*
+  		절대 매핑: /member/memberList.wow
+  		 -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</web-app>
