@@ -24,8 +24,11 @@ public class MemberList implements Handler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		MemberSearchVO searchVO = new MemberSearchVO();
+		// MemberSearchVO 객체 선언
 		IMemberService memberService = new MemberServiceImpl();
+		// MemberServiceImpl객체 선언 
 		req.setAttribute("searchVO", searchVO);
+		// 요청에 searchVO객체 setAttribute
 		
 		try {
 			BeanUtils.populate(searchVO, req.getParameterMap());
