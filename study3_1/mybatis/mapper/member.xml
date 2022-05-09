@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.member.dao.IMemberDao">
+
+	<select id="getTotalRowCount" parameterType="com.study.member.vo.MemberVO" resultType="int">
+		                             
+      SELECT count(*)		
+	   FROM  member			
+	   WHERE mem_del_yn = 'N'
+                             
+	</select>
+
+	
+	<select id="getMemberList" parameterType="com.study.member.vo.MemberVO" resultType="com.study.member.vo.MemberVO">
+		                             
+	      SELECT * FROM    (                              
+	 	   SELECT a.*, rownum AS rnum  FROM(              
+
+			SELECT											
+	  				  mem_id      , mem_pass  ,mem_name		
+				   , mem_bir   , mem_zip   ,mem_add1		
+	   				, mem_add2  , mem_hp    ,mem_mail		
+				   , mem_job   , mem_hobby					
+				   , mem_mileage, mem_del_yn				
+				   , b.comm_nm AS job_category				
+				   , c.comm_nm AS hob_category					
+
+		  	 FROM member a, comm_code b, comm_code c			
+	    	 WHERE a.mem_job = b.comm_cd						
+	                                                
+		    AND    a.mem_hobby = c.comm_cd					
+	    	 AND    a.mem_del_yn= 'N'			
+		  	 ORDER BY mem_id DESC       
+	                            
+	 		 ) a ) b                    
+	 		 WHERE rnum BETWEEN #{firstRow} and #{lastRow}	
+	 		 		
+	</select>
+
+	<select id="getMember" parameterType="String" resultType="com.study.member.vo.MemberVO">
+		                             
+     SELECT											
+		   a.mem_id      , a.mem_pass  ,a.mem_name		
+		   , a.mem_bir   , a.mem_zip   ,a.mem_add1		
+		   , a.mem_add2  , a.mem_hp    ,a.mem_mail		
+		   , a.mem_job   , a.mem_hobby					
+		   , a.mem_mileage, a.mem_del_yn				
+			  , b.comm_nm AS job_category				
+		    , c.comm_nm AS hob_category					
+		FROM member a, comm_code b, comm_code c			
+		WHERE a.mem_job = b.comm_cd						
+		AND    a.mem_hobby = c.comm_cd					
+		AND a.mem_id = #{memId} 								
+                             
+	</select>
+
+	<update id="updateMember" parameterType="com.study.member.vo.MemberVO"  >
+		
+		UPDATE member SET	
+		     mem_pass  = #{memPass}  
+		   , mem_name  = #{memName}  
+		   , mem_zip   = #{memZip} 	
+		   , mem_add1  = #{memAdd1} 	
+		   , mem_add2  = #{memAdd2} 	
+		   , mem_bir   = #{memBir} 	
+		   , mem_mail  = #{memMail} 	
+		   , mem_hp    = #{memHp} 	
+		   , mem_job   = #{memJob} 	
+		   , mem_hobby = #{memHobby} 	
+		WHERE mem_id   = #{memId}				
+	
+	</update>
+
+	<delete id="deleteMember" parameterType="com.study.member.vo.MemberVO">
+	
+		UPDATE free_board SET	
+   		  bo_del_yn      = 'Y'
+		WHERE bo_no      = #{boNo}	
+		
+	</delete>
+
+	<insert id="insertMember" parameterType="com.study.member.vo.MemberVO">
+	
+		INSERT INTO member (				
+		    mem_id,      mem_pass,   mem_nam
+		    , mem_bir,   mem_zip,    mem_add
+		    , mem_add2,  mem_hp,     mem_mai
+		    , mem_job,   mem_hobby			
+		    , mem_mileage, mem_del_yn		
+		) VALUES (							
+		     #{memId}     ,#{memPass}   ,#{memName}					
+		    ,#{memBir}    ,#{memZip}    ,#{memAdd1}	
+		    ,#{memAdd2}   ,#{memHp}     ,#{memMail}	
+		    ,#{memJob}    ,#{memHobby}		
+		   ,0                    ,'N'	 )	
+		   
+	</insert>
+
+</mapper>

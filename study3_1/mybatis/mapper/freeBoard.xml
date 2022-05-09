@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.free.dao.IFreeBoardDao">
+
+<!--
+	메소드와 동일하게 파라미터 = parameterType 타입 
+	resultType = 리턴 타입
+	UPDATE, DELETE, INSERT는 resultType 어차피 int라 안써도 됨 -->
+
+
+	<select id="getTotalRowCount" parameterType="com.study.free.vo.FreeBoardSearchVO" resultType="int">
+		                             
+      SELECT count(*)		
+ 	   FROM free_board		
+ 		WHERE bo_del_yn = 'N'	
+                             
+	</select>
+	
+	<select id="getBoardList" parameterType="com.study.free.vo.FreeBoardVO" resultType="com.study.free.vo.FreeBoardVO" >
+<!-- 		알아서 List형태로 만들어줌 FreeBoardVO -->
+		 SELECT * FROM (                                        
+ 		 SELECT a.*, rownum AS rnum  FROM(                     
+	    SELECT                                              
+	    	to_char(bo_reg_date, 'YYYY-MM-DD') AS bo_reg_date    
+ 		   ,to_char(bo_mod_date, 'YYYY-MM-DD') AS bo_mod_date    
+		 	, bo_no       , bo_title    , bo_category           
+		 	, bo_writer   , bo_pass     , bo_content            
+		 	, bo_ip       , bo_hit      , bo_del_yn             
+  		   , b.comm_nm AS bo_category_nm                      
+ 		FROM free_board a, comm_code b                           
+ 		WHERE a.bo_category = b.comm_cd                         
+ 		AND bo_del_yn= 'N'			
+ 					
+ 		ORDER BY bo_no DESC            
+		) a ) b                        
+		WHERE rnum BETWEEN #{firstRow} and #{lastRow}     	
+	</select>
+	
+	<select id="getBoard" parameterType="int" resultType="com.study.free.vo.FreeBoardVO" >
+			 SELECT                                 
+			 	bo_no                                   
+				, bo_title , bo_category , bo_writer    
+				, bo_pass , bo_content , bo_ip          
+				, bo_hit , bo_reg_date , bo_mod_date    
+				, bo_del_yn                             
+			                                            
+				, b.comm_nm AS bo_category_nm			
+		    FROM free_board a, comm_code b              
+		    WHERE a.bo_category = b.comm_cd				
+		    AND bo_no = #{boNo}                          
+	</select>
+	
+	<update id="increaseHit" parameterType="int"  >
+		UPDATE free_board SET	
+		bo_hit = bo_hit+1		
+		WHERE bo_no = #{boNo}			
+	</update>
+	
+	<update id="updateBoard" parameterType="com.study.free.vo.FreeBoardVO" >
+		UPDATE free_board SET		
+    	 bo_title        = #{boTitle}		
+	    , bo_category   = #{boCategory}		
+	    , bo_content    = #{boContent}		
+	    , bo_hit        = bo_hit
+	    , bo_mod_date   = sysdate
+		WHERE bo_no      = #{boNo}		
+	</update>
+	
+	<delete id="deleteBoard" parameterType="com.study.free.vo.FreeBoardVO">
+		UPDATE free_board SET	
+   		  bo_del_yn      = 'Y'
+		WHERE bo_no      = #{boNo}	
+	</delete>
+	
+	<insert id="insertBoard" parameterType="com.study.free.vo.FreeBoardVO">
+		INSERT INTO free_board (												
+   			 bo_no           , bo_title      , bo_category						
+    		 , bo_writer     , bo_pass       , bo_content 						
+    		 , bo_ip         , bo_hit        , bo_reg_date						
+    		 , bo_mod_date   , bo_del_yn											
+		) VALUES (																
+    				 SEQ_FREE_BOARD.nextval                , #{boTitle}    , #{boCategory}			
+    							,#{boWriter}                 , #{boPass}     , #{boContent}			
+   								,#{boIp}                     , 0              ,sysdate		
+   								,null                        , 'N'                       )
+	</insert>
+	
+	
+	
+	
+	
+</mapper>

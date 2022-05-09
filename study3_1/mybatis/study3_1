@@ -1,0 +1,18 @@
+(SQLMapper) mybatis (Persistence영역을 편하게)
+
+Persistence영역(DaoOracle) > JDBC로 하기엔 코딩이 불편하다.
+
+sb.append, while()에서 VO에 값들을 하나하나 세팅 해줘야해서 불편함 컬럼이 많아질수록 일도 늘어남 
+
+
+ mybatis > 프레임워크
+ 
+ 프레임워크는 프레임워크에서 개발자가 만든 소스코드를 사용
+ 라이브러리는 개발자가 라이브러리의 소스코드를 사용 
+ 
+ 
+ 설정이 된 상태라면
+ 1. mybatis-config에 mapper 추가.
+ 2. ~~service에서 Dao얻는 코드 바꾸기 (DaoOracle 대신 sqlSession.getMapper)
+ 3. mapper.xml 만들기
+ 

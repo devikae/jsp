@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		 <setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+<!-- 	bo_no > boNO로 만들어주는 세팅  -->
+	
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/> 
+      <dataSource type="POOLED">
+<!--       POOL에 저장된 방식 -->
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/> 
+<!--       		드라이버 -->
+        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+        <property name="username" value="jsp"/>
+        <property name="password" value="jsp"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="mybatis/mapper/freeBoard.xml"/>
+    <mapper resource="mybatis/mapper/code.xml"/>
+    <mapper resource="mybatis/mapper/member.xml"/>
+  </mappers>
+</configuration>
