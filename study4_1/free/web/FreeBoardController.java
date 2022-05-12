@@ -52,10 +52,11 @@ public class FreeBoardController {
 //			e.printStackTrace();
 //		} 
 //		req.setAttribute("searchVO", searchVO);
-		// 이 만큼 필요 없음 
+		// setAttribute"searchVO"를 안해줘도 된다 위 매개변수에서 ModelAttribute를 해주기 때문에
 		
 		List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(searchVO);
 //		req.setAttribute("freeBoardList", freeBoardList);
+		// 55번 처럼 model.add
 		model.addAttribute("freeBoardList",freeBoardList);
 		
 //		List<CodeVO> cateList=codeService.getCodeListByParent("BC00");
@@ -80,7 +81,7 @@ public class FreeBoardController {
 		try{
 			FreeBoardVO freeBoard=freeBoardService.getBoard(boNo);
 //			req.setAttribute("freeBoard", freeBoard);
-			// 모델로 받아줌 
+			// 모델로 Attribute
 			model.addAttribute("freeBoard", freeBoard);
 			freeBoardService.increaseHit(boNo);
 			
@@ -150,7 +151,7 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping(value = "/free/freeModify.wow", method = RequestMethod.POST)
-	// 이렇게 POST로 지정해줘도 되지만 보통 @PostMapping를 더 많이 사용한다.
+	// 이렇게 method를 POST로 지정해줘도 되지만 보통 @PostMapping를 더 많이 사용한다.
 	public String freeBoardModify(Model model, @ModelAttribute("freeBoard") FreeBoardVO freeBoard) {
 		
 		ResultMessageVO resultMessageVO=new ResultMessageVO();
