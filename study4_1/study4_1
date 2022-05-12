@@ -1,0 +1,32 @@
+Spring 서버에 bean이 만들어져 있다. 
+
+mvc-servlet.xml 은 @Controller
+Context-main.xml 은 @Mapper, @Serivce
+ 
+ DS ) @Controller (mvc-servlet)
+ 
+설정  
+ 
+1. porm.xml > 오류가 있으면 절대 안된다.
+ 
+2. web.xml spring 설정 파일 위치를 잘 봐둬야한다.
+
+3. context-*.xml, mvc-servlet.xml spring MVC
+
+4. DB관련해서 mybatis 설정이 잘 되어있는지 확인 
+ 
+
+ 설정을 잘 해뒀다면 
+1. @Contriller 클래스 만들기, @RequestMapping(url)메소드 만들기
+	@Service클래스 @inject 해주기 
+	요청처리 과정 spring처럼 
+
+2. @Service 만들기, @Mapper 인터페이스 @inject 해주기 
+	+mybatis 사용을 spring에 맞게 
+	
+	
+3. @Mapper 만들고, mapper.xml 만들기 
+
+
+
+
