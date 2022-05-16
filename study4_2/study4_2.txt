@@ -1,0 +1,9 @@
+ validation 적용 순서 
+0. lib 다운 (hibernate vlidator) 
+
+1. VO에 검사내용 작성 ( 비밀번호 4글자 이상인지, null인지 아닌지 등 )
+2. Controller에서 검사하기 (검사 객체에 @Validated 붙이기) ,BindingResult 검사결과 객체 이용하기
+3. 다시 jsp로 이동해서 사용자가 제대로 된 값 입력하게 하기
+ 	(처음 freeForm 요청했을 경우와 사용자가 입력했는데 검사에 실패해 다시 freeForm으로 왔을 경우 구별) 
+
+ 4. Class를 이용해 VO 필드별로 조건 지정 
