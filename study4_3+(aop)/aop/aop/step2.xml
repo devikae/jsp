@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+	
+	<bean id="forCal" class="com.aop.step2.ForCalculator"></bean>	
+	<bean id="rerCal" class="com.aop.step2.RecCalculator"></bean>		
+	<bean id="exeCal" class="com.aop.step2.ExeTimeAspect"></bean>	
+	<!-- spring내에서 forCal, recCal 메소드가 실행 될 때 
+		exeCal이 대신 실행된디 > (시간측정 + forCal의 factorial)
+	 -->	
+	<aop:config proxy-target-class="true">    
+	<!--  기본값은 'false'인데  aop 적용 될 클래스(for,recCal)가  특정 인터페이스(Calculator)를 상속 받은 경우  
+	 프록시 객체 생성 방식 때문에   에러가 난다. 
+	  Bean named 'forCal' is expected to be of type 'com.aop.step2.ForCalculator' but was actually of type 'com.sun.proxy.$Proxy2'
+	  이 때  값을 'true'로 해준다면  프록시 객체 생성 방식이 변경 되면서 에러가 안 나게 된다. 
+	  -->
+	
+		<aop:aspect id="timeMeasureAspect" ref="exeCal"> <!--  공통기능 클래스 , aspect 설정 -->
+			<aop:pointcut expression="execution(public * com.aop.step2..*(..))" id="publicMethod"/>     
+            <!--  공통기능을 어디(어떤메소드)에다 지정할 지 설정  -->
+            <!-- expression 사용법은 외울필요없다. 그 때 그 때 검색하자.  -->
+            
+			<aop:around pointcut-ref="publicMethod" method="timeMeasure"/>
+			<!-- method :    aspect 클래스인 exeTimeAspect 에서  어떤 메소드를  공통메소드로 할 건지..  -->
+			<!-- 즉, around(전후)로 publicMethod에서 지정한 com.aop.step2에 있는 모든 public 메소드들을 실행할 때
+				exeTimeAspect클래스에 있는 measure메소드가 실행된다.
+			 -->
+		</aop:aspect> 
+	</aop:config>
+		
+		
+</beans>

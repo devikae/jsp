@@ -1,0 +1,17 @@
+LoginCheckInterceptor
+ @RM의 url이 mypage/* 인 모든 요청을 검사해서
+ 로그인이 되어있으면 그 화면이 나오고, 안되어있으면 login화면으로 이동
+ 
+ 
+ManagerCheckInterceptor
+ @RM의 url이 /member/*인 모든 요청을 검사해서
+ 내가 매니저라면 true, 안되어있으면 false 
+ 
+ 매니저의 판단 > UserVO중에 userRole이라는 필드를 이용해서  
+
+Log4j 
+AOP 적용 > 공통기능을 적용시켜줌 
+
+Spring을 배웠다면  
+	"DI, AOP, MVC패턴"
+잘 숙지해두자
