@@ -1,0 +1,5 @@
+@ResponseBody는 return 값이 jsp가 찾는게 아니라 그대로 요청주체에 전달
+
+요청주체가 어떻게 해석할지에 대한명시는 @RM의 produces
+
+Jquery
