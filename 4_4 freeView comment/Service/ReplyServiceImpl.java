@@ -39,9 +39,13 @@ public class ReplyServiceImpl implements IReplyService{
 
 	@Override
 	public void removeReply(ReplyVO reply) throws BizNotFoundException, BizAccessFailException {
+		
+		ReplyVO vo=replyDao.getReply(reply.getReNo()); 
 		if(reply == null) {
-			
+			throw new BizNotFoundException();
 		}
+		if(!vo.getReMemId().equals(reply.getReMemId())) throw new BizAccessFailException();
+		
 		replyDao.deleteReply(reply);
 		System.out.println("삭제 완료.");
 	}
