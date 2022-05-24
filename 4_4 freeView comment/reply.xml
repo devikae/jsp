@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.reply.dao.IReplyDao">
+
+	<select id="getReplyCountByParent" parameterType="com.study.reply.vo.ReplyVO" resultType="int">
+		SELECT count(*) FROM reply
+	</select>
+	
+	<select id="getReplyListByParent" parameterType="com.study.reply.vo.ReplyVO" resultType="com.study.reply.vo.ReplyVO">
+		<include refid="common.prePage"></include>
+		SELECT	re_no	, re_category	, re_parent_no
+    		 , re_mem_id	, re_content	, re_ip
+    		 , re_reg_date , re_mod_date
+    		 , b.mem_name as reMemName
+		FROM reply a , member b
+		WHERE a.re_mem_id = b.mem_id
+    	ORDER BY re_no DESC
+    	<include refid="common.postPage"></include>
+	</select>
+	
+	<insert id="insertReply" parameterType="com.study.reply.vo.ReplyVO">
+		INSERT INTO reply (
+		      re_no       , re_category  , re_parent_no
+		    , re_mem_id   , re_content   , re_ip
+		    , re_reg_date , re_mod_date
+		) VALUES (
+		    SEQ_REPLY.nextval, #{reCategory}, #{reParentNo}
+		  , #{reMemId}  , #{reContent}, #{reIp}
+		  , sysdate , null
+		)
+	</insert>
+	
+	<update id="updateReply" parameterType="com.study.reply.vo.ReplyVO">
+		UPDATE reply SET RE_CONTENT = #{reContent} 
+		WHERE re_no = #{reNo}
+	</update>
+	
+	<delete id="deleteReply" parameterType="com.study.reply.vo.ReplyVO">
+		DELETE 
+		FROM reply
+		WHERE re_no = #{reNo}
+	</delete>
+	
+	<select id="getReply" parameterType="int" resultType="com.study.reply.vo.ReplyVO">
+		SELECT *
+		FROM reply
+		WHERE re_no = #{reNo}
+	</select>
+	
+	
+</mapper>

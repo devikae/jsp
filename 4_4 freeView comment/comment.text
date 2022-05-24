@@ -1,0 +1,12 @@
+1. Controller (Inject Service)
+	@RequestMapping
+
+2. Service (Inject Dao)
+	Dao method Override
+
+3. Dao (@Mapping)
+
+4. XML (Dao Method)
+    SQL문 작성  > DB 접근 
+
+5. View ( script) 
