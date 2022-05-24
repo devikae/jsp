@@ -20,8 +20,11 @@ import com.study.reply.vo.ReplyVO;
 
 @Controller
 public class ReplyController {
+	
 	@Inject
 	IReplyService replyService;
+	// Service Inject 
+	
 	
 	// 내가 보내는 data를 받는쪽에선 json으로 해석 하라는 명령
 	@ResponseBody
@@ -38,7 +41,10 @@ public class ReplyController {
 		// String 이나 int로 해도 된다 select문은 형태에 맞춰줘야 한다.
 		// Map의 사용 이유는 json으로 이용 해보기 위해 
 		replyService.registReply(reply);
+		// Inject한 serivce에서 registReply 호출
+		
 		Map<String, Object> map = new HashMap<String, Object>();
+		// Map 생성
 		map.put("data", "DB 등록 완료");
 		map.put("success", true);
 		
