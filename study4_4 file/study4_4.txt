@@ -1,0 +1,58 @@
+@ResponseBody는 return 값이 jsp가 찾는게 아니라 그대로 요청주체에 전달
+
+요청주체가 어떻게 해석할지에 대한명시는 @RM의 produces
+
+Jquery 기본
+
+Jackson databind 라이브러리 추가 후 
+자바 객체를 ajax에 바로 보낼 때 (@Responsebody)
+return "자바객체"; 하면 알아서 Spring이 "자바객체"를 json형태로 바꿔서 보내준다
+ 
+
+ 자주 나는 오류 
+ 
+ $(this)가 ajax인지 tag인지 
+ DB는 commit 
+ 
+ 
+ ajax 요청 + Controller 다 만들어 놨다면 Controller에서 원하는 데이터가 Ajax-Succes:function(data)로 와야 하는데 
+ 이상하게 <html> </html>이 온다면? -- > Login Interceptro에 ajax 요청이 걸리는지 확인해보자
+ 
+ 
+ 빈, 컨트롤러 스플힝, 싱글톤 등등
+ 사용자가 나 혼자가 아닐 때 
+ 전역변수를 쓰는게 왜 문제일까? 
+ 
+ >> 스프링 빈에서는 데이터 저장용 필드는 사용하지 않는다. (상수는 사용 가능) 읽기만 가능 하도록 
+ 
+ 객체 . 데이터저장 > 필드  ( 스프링에선 데이터 저장을 위해 필드를 절대 사용하지 않는다) 브라우저 별로 이용하게 하기 위해 >> 세션 이용 
+ 필드가 있는 경우는 보통 데이터 저장용인 필드가 아니고 Inject 
+ 
+ 
+ // 파일 업로드의 3가지 규칙 
+1. input type=file
+2. <form method = "post">
+3. <form enctype = "multipart/form-data">
+ 
+ 업로드만 하는건 쉽다, 파일 관련 라이브러리 다운받고 파일 업로드 메소드만 사용하면 된다 
+하지만 다운로드 할 때는 내가 업로드 했던 파일이 DB에 파일에 관한 '내용'이 DBd에 저장되어 있어야 DB를 조회해서 업로드 된 파일을 다운로드 할 수 있다.
+
+서버에서 multipart 처리 할 준비 
+1. porm.xml commons-io ( 파일 업로드 dependency)
+2. Spring에서 제공해주는 multipartResolver 를 Bean 등록 (id(객체이름) 는 무조건 "multipartResolver")
+ 	CommonsIOMultipartResolver : servlet 3.0 이전, 옛날꺼라 안씀 
+ 	StandardServletMultipartResolver : servlet 3.0 부터 
+    
+    multpartResolver 관련 기타 설정
+    (web.xml, appconfig.properties에 다운로드 파일 경로)
+    
+파일 업로드는 free에서
+
+
+
+
+
+
+
+
+
