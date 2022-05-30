@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.todo.dao.IToDoDao">
+	
+	<select id="getTodoList" resultType="com.study.todo.vo.ToDoVO" >
+		SELECT
+   			 td_no,	 		td_nm,				td_pass,
+   			 td_content,		td_deadline, 	
+   			 TO_CHAR(td_reg_date, 'YYYY-MM-DD') AS td_reg_date,
+		    TO_CHAR(td_mod_date, 'YYYY-MM-DD') AS td_mod_date,	
+		    td_del_yn
+		FROM
+    		todo
+       WHERE td_del_yn = 'N'
+		 ORDER BY td_no desc
+	</select>
+	
+	
+	<select id="getTodo" resultType="com.study.todo.vo.ToDoVO" parameterType="com.study.todo.vo.ToDoVO">
+		SELECT
+   			 td_no,	 		td_nm,				td_pass,
+   			 td_content,		td_deadline, 	
+			 TO_CHAR(td_reg_date, 'YYYY-MM-DD') AS td_reg_date,
+		    TO_CHAR(td_mod_date, 'YYYY-MM-DD') AS td_mod_date,	
+		    td_del_yn
+		FROM
+    		todo
+       WHERE td_del_yn = 'N'
+         AND	td_no = #{toNo}
+	</select>
+	
+	
+	<update id="updateTodo" parameterType="com.study.todo.vo.ToDoVO">
+		UPDATE todo SET td_CONTENT = #{tdContent},
+							td_mod_date = sysdate
+		WHERE td_no = #{tdNo}
+	</update>
+
+	
+	<update id="deleteTodo" parameterType="com.study.todo.vo.ToDoVO">
+		UPDATE todo SET td_del_yn = 'Y'
+		WHERE td_no = #{tdNo}
+	</update>
+	
+	
+	<insert id="insertTodo" parameterType="com.study.todo.vo.ToDoVO">
+		INSERT INTO todo (
+		    td_no,	 		td_nm,			 	td_pass,
+		    td_content,		td_deadline,	 	
+		    td_reg_date,   	td_del_yn
+		) VALUES (
+		   	todo_seq.NEXTVAL, #{tdNm},		#{tdPass},
+		   	#{tdContent},	  #{tdDeadline},	
+		   	sysdate,	 		  'N'
+		)
+	</insert>
+	
+	
+	
+
+
+</mapper>
